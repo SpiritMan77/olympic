@@ -25,7 +25,6 @@ export default {
   data: () => ({
     links: [
       { text: "Home", route: "/" },
-      { text: "Results", route: "/results" },
       { text: "Follow list", route: "/follow_list" },
     ],
   }),

@@ -1,112 +1,112 @@
 export const sports = {
   football: [
     {
-      state: "Portugal",
       team: "Benfica Lisabon",
+      state: "Portugal",
     },
     {
-      state: "Portugal",
       team: "Gil Vicente FC",
+      state: "Portugal",
     },
     {
-      state: "Portugal",
       team: "Belenenses",
-    },
-    {
       state: "Portugal",
+    },
+    {
       team: "Sporting CP",
+      state: "Portugal",
     },
     {
-      state: "Spain",
       team: "Vallecano",
+      state: "Spain",
     },
     {
-      state: "Spain",
       team: "RCD Mallorca",
+      state: "Spain",
     },
     {
-      state: "Spain",
       team: "Valencia",
+      state: "Spain",
     },
     {
-      state: "Spain",
       team: "Cadiz",
+      state: "Spain",
     },
   ],
   hockey: [
     {
-      state: "USA",
       team: "New York Rangers",
+      state: "USA",
     },
     {
-      state: "USA",
       team: "Florida Panthers",
+      state: "USA",
     },
     {
-      state: "USA",
       team: "Philadelphia Flyers",
-    },
-    {
       state: "USA",
+    },
+    {
       team: "Winnipeg Jets",
+      state: "USA",
     },
     {
-      state: "Finland",
       team: "Lahti Pelicans",
+      state: "Finland",
     },
     {
-      state: "Finland",
       team: "Assat Pori",
+      state: "Finland",
     },
     {
-      state: "Finland",
       team: "Vaasan Sport",
+      state: "Finland",
     },
     {
-      state: "Finland",
       team: "Tappara Tampere",
+      state: "Finland",
     },
   ],
   basketball: [
     {
-      state: "Finland",
       team: "Korihait",
+      state: "Finland",
     },
     {
-      state: "Finland",
       team: "Kataja",
+      state: "Finland",
     },
     {
-      state: "Finland",
       team: "Helsinki Seagulls IF",
-    },
-    {
       state: "Finland",
+    },
+    {
       team: "Lahti Basketball",
+      state: "Finland",
     },
     {
-      state: "French",
       team: "Boulazac Basket",
-    },
-    {
       state: "French",
+    },
+    {
       team: "Union tours Basket",
+      state: "French",
     },
     {
-      state: "Greece",
       team: "E.K Kavalas",
+      state: "Greece",
     },
     {
-      state: "Greece",
       team: "Panerythraikos BC",
+      state: "Greece",
     },
     {
-      state: "Greece",
       team: "AO Triton",
+      state: "Greece",
     },
     {
-      state: "Greece",
       team: "Marousious BC",
+      state: "Greece",
     },
   ],
 };
@@ -126,6 +126,14 @@ export const matches = {
       time: "16:00",
       team1: "RCD Mallorca",
       team2: "Belenenses",
+      score1: 0,
+      score2: 0,
+    },
+    {
+      date: "12.2.2022",
+      time: "12:00",
+      team1: "Valencia",
+      team2: "Cadiz",
       score1: 0,
       score2: 0,
     },
