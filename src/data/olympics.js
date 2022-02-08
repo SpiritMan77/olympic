@@ -118,8 +118,8 @@ export const matches = {
       time: "20:00",
       team1: "Benfica Lisabon",
       team2: "Gil Vicente FC",
-      score1: 0,
-      score2: 0,
+      score1: 1,
+      score2: 2,
     },
     {
       date: "9.2.2022",

@@ -1,6 +1,11 @@
 <template>
   <div class="program">
-    <v-tabs fixed-tabs background-color="primary" dark>
+    <v-tabs
+      fixed-tabs
+      background-color="primary"
+      dark
+      @change="activeTab = $event"
+    >
       <v-tab>Teams</v-tab>
       <v-tab>Matches</v-tab>
       <v-tab>Results</v-tab>
@@ -75,20 +80,51 @@
                     ></v-checkbox>
                   </v-list-item>
                 </v-list>
+              </v-menu>
+            </v-row>
+          </v-container>
+          <Matches :sport="sport" :data="rightMatches"></Matches>
+        </v-card>
+      </v-tab-item>
+
+      <v-tab-item>
+        <v-card>
+          <v-container>
+            <v-row style="padding-top: 10px">
+              <h1>Results</h1>
+              <v-spacer></v-spacer>
+              <v-menu offset-y :close-on-content-click="false">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    class="mx-2"
+                    fab
+                    dark
+                    small
+                    color="primary"
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <v-icon dark flat> mdi-filter</v-icon>
+                  </v-btn>
+                </template>
+
                 <v-list>
-                  <h3>By Date</h3>
-                  <v-list-item>
-                    <v-list-item-title></v-list-item-title>
+                  <h3>By State</h3>
+                  <v-list-item v-for="state in states" :key="state">
+                    <v-checkbox
+                      v-model="stateFilter"
+                      :label="state"
+                      :value="state"
+                    ></v-checkbox>
                   </v-list-item>
                 </v-list>
               </v-menu>
             </v-row>
           </v-container>
-          <Matches :sport="sport" :matches="rightMatches"></Matches>
+
+          <Matches :sport="sport" :data="rightMatches" :resultsMode="true" />
         </v-card>
       </v-tab-item>
-
-      <v-tab-item><h1>Results</h1></v-tab-item>
     </v-tabs>
   </div>
 </template>
@@ -107,6 +143,7 @@ export default {
   data() {
     return {
       stateFilter: [],
+      activeTab: 0,
     };
   },
   computed: {
