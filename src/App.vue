@@ -16,8 +16,16 @@ export default {
   data: () => ({}),
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .app {
   background-color: red;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1.2rem;
 }
 </style>

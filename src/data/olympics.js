@@ -1,135 +1,135 @@
-const sports = ['football', 'hockey', 'basketball'];
-const teams = [
+export const sports = {
+  football: [
     {
-        sport: "football",
-        state: "Portugal",
-        team: "Benfica Lisabon"
+      state: "Portugal",
+      team: "Benfica Lisabon",
     },
     {
-        sport: "football",
-        state: "Portugal",
-        team: "Gil Vicente FC"
+      state: "Portugal",
+      team: "Gil Vicente FC",
     },
     {
-        sport: "football",
-        state: "Portugal",
-        team: "Belenenses"
+      state: "Portugal",
+      team: "Belenenses",
     },
     {
-        sport: "football",
-        state: "Portugal",
-        team: "Sporting CP"
+      state: "Portugal",
+      team: "Sporting CP",
     },
     {
-        sport: "football",
-        state: "Spanish",
-        team: "Vallecano"
+      state: "Spain",
+      team: "Vallecano",
     },
     {
-        sport: "football",
-        state: "Spanish",
-        team: "RCD Mallorca"
+      state: "Spain",
+      team: "RCD Mallorca",
     },
     {
-        sport: "football",
-        state: "Spanish",
-        team: "Valencia"
+      state: "Spain",
+      team: "Valencia",
     },
     {
-        sport: "football",
-        state: "Spanish",
-        team: "Cadiz"
+      state: "Spain",
+      team: "Cadiz",
+    },
+  ],
+  hockey: [
+    {
+      state: "USA",
+      team: "New York Rangers",
     },
     {
-        sport: "hockey",
-        state: "USA",
-        team: "New York Rangers"
+      state: "USA",
+      team: "Florida Panthers",
     },
     {
-        sport: "hockey",
-        state: "USA",
-        team: "Florida Panthers"
+      state: "USA",
+      team: "Philadelphia Flyers",
     },
     {
-        sport: "hockey",
-        state: "USA",
-        team: "Philadelphia Flyers"
+      state: "USA",
+      team: "Winnipeg Jets",
     },
     {
-        sport: "hockey",
-        state: "USA",
-        team: "Winnipeg Jets"
+      state: "Finland",
+      team: "Lahti Pelicans",
     },
     {
-        sport: "hockey",
-        state: "Finland",
-        team: "Lahti Pelicans"
+      state: "Finland",
+      team: "Assat Pori",
     },
     {
-        sport: "hockey",
-        state: "Finland",
-        team: "Assat Pori"
+      state: "Finland",
+      team: "Vaasan Sport",
     },
     {
-        sport: "hockey",
-        state: "Finland",
-        team: "Vaasan Sport"
+      state: "Finland",
+      team: "Tappara Tampere",
+    },
+  ],
+  basketball: [
+    {
+      state: "Finland",
+      team: "Korihait",
     },
     {
-        sport: "hockey",
-        state: "Finland",
-        team: "Tappara Tampere"
+      state: "Finland",
+      team: "Kataja",
     },
     {
-        sport: "basketball",
-        state: "Finland",
-        team: "Korihait"
+      state: "Finland",
+      team: "Helsinki Seagulls IF",
     },
     {
-        sport: "basketball",
-        state: "Finland",
-        team: "Kataja"
+      state: "Finland",
+      team: "Lahti Basketball",
     },
     {
-        sport: "basketball",
-        state: "Finland",
-        team: "Helsinki Seagulls IF"
+      state: "French",
+      team: "Boulazac Basket",
     },
     {
-        sport: "basketball",
-        state: "Finland",
-        team: "Lahti Basketball"
+      state: "French",
+      team: "Union tours Basket",
     },
     {
-        sport: "basketball",
-        state: "French",
-        team: "Boulazac Basket"
+      state: "Greece",
+      team: "E.K Kavalas",
     },
     {
-        sport: "basketball",
-        state: "French",
-        team: "Union tours Basket"
+      state: "Greece",
+      team: "Panerythraikos BC",
     },
     {
-        sport: "basketball",
-        state: "Greece",
-        team: "E.K Kavalas"
+      state: "Greece",
+      team: "AO Triton",
     },
     {
-        sport: "basketball",
-        state: "Greece",
-        team: "Panerythraikos BC"
+      state: "Greece",
+      team: "Marousious BC",
     },
-    {
-        sport: "basketball",
-        state: "Greece",
-        team: "AO Triton"
-    },
-    {
-        sport: "basketball",
-        state: "Greece",
-        team: "Marousious BC"
-    }
-],
+  ],
+};
 
-export default sports, teams;
+export const matches = {
+  football: [
+    {
+      date: "8.2.2022",
+      time: "20:00",
+      team1: "Benfica Lisabon",
+      team2: "Gil Vicente FC",
+      score1: 0,
+      score2: 0,
+    },
+    {
+      date: "9.2.2022",
+      time: "16:00",
+      team1: "RCD Mallorca",
+      team2: "Belenenses",
+      score1: 0,
+      score2: 0,
+    },
+  ],
+  hockey: [],
+  basketball: [],
+};

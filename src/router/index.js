@@ -4,19 +4,26 @@ import Home from "@/views/Home.vue";
 import Program from "@/views/Program";
 import Results from "@/views/Results";
 import FollowList from "@/views/FollowList";
+import PageNotFound from "@/views/PageNotFound";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "*",
+    name: "pagenotfound",
+    component: PageNotFound,
+  },
   {
     path: "/",
     name: "Home",
     component: Home,
   },
   {
-    path: "/program",
+    path: "/program/:sport",
     name: "program",
     component: Program,
+    props: true,
   },
   {
     path: "/results",
@@ -28,13 +35,6 @@ const routes = [
     name: "followlist",
     component: FollowList,
   },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //
-  //   component: () =>
-  //     import("../views/About.vue"),
-  // },
 ];
 
 const router = new VueRouter({
