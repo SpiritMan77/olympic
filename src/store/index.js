@@ -10,10 +10,26 @@ export default new Vuex.Store({
     matches: matches,
     followList: [],
   },
-  mutations: {},
+  mutations: {
+    ADD_TEAM: (state, data) => {
+      state.data[data.sport].push(data.newTeam);
+    },
+    ADD_FOLLOW: (state, category) => {
+      if (state.followList.indexOf(category) === -1) {
+        state.followList.push(category);
+      }
+    },
+    REMOVE_FOLLOW: (state, category) => {
+      state.followList = state.followList.filter((a) => a !== category);
+    },
+  },
   getters: {
     getData: (state) => state.data,
-    getMatches: (state) => state.matches,
+    getMatches: (state) => (sport) =>
+      state.matches[sport].map((match) => {
+        match.date = new Date(match.date);
+        return match;
+      }),
     getTeams: (state) => (sport, team) =>
       state.data[sport].filter((t) => {
         return team ? team === t.team : true;

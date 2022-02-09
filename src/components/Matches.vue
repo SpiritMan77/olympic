@@ -1,33 +1,6 @@
 <template>
-  <v-simple-table>
-    <template v-slot:default>
-      <thead>
-        <tr>
-          <th class="text-left">Date and Time</th>
-          <th class="text-left">State</th>
-          <th class="text-left">Teams</th>
-          <th v-if="resultsMode" class="text-left">Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="match in data" :key="match.team1">
-          <td>
-            <b>{{ match.date }} {{ match.time }}</b>
-          </td>
-          <td>
-            <b>{{ getTeamState(sport, match.team1) }}</b> VS
-            <b>{{ getTeamState(sport, match.team2) }}</b>
-          </td>
-          <td>
-            <b>{{ match.team1 }}</b> VS <b>{{ match.team2 }}</b>
-          </td>
-          <td v-if="resultsMode">
-            <b>{{ match.score1 }}</b> : <b>{{ match.score2 }}</b>
-          </td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+  <v-data-table :headers="tableHeaders" :items="tableItems" hide-default-footer>
+  </v-data-table>
 </template>
 
 <script>
@@ -41,6 +14,58 @@ export default {
     resultsMode: Boolean,
   },
   mixins: [utils],
+  computed: {
+    tableHeaders() {
+      let headers = [
+        {
+          text: "Date and Time",
+          sortable: true,
+          sort: (a, b) => {
+            return new Date(b).getTime() - new Date(a).getTime();
+          },
+          value: "date",
+        },
+        {
+          text: "State",
+          sortable: true,
+          value: "state",
+        },
+        {
+          text: "Team",
+          sortable: true,
+          value: "team",
+        },
+      ];
+      if (this.resultsMode) {
+        headers.push({
+          text: "Score",
+          sortable: true,
+          value: "score",
+        });
+      }
+      return headers;
+    },
+    tableItems() {
+      return this.data.map((data) => {
+        return {
+          date: data.date.toLocaleDateString("sk-SK", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          }),
+          state:
+            this.getTeamState(this.sport, data.team1) +
+            " VS " +
+            this.getTeamState(this.sport, data.team2),
+          team: `${data.team1} VS ${data.team2}`,
+          score: `${data.score1}:${data.score2}`,
+        };
+      });
+    },
+  },
 };
 </script>
 

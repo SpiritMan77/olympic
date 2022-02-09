@@ -2,9 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import Program from "@/views/Program";
-import Results from "@/views/Results";
 import FollowList from "@/views/FollowList";
 import PageNotFound from "@/views/PageNotFound";
+import CreateTeam from "@/views/CreateTeam";
 
 Vue.use(VueRouter);
 
@@ -26,14 +26,15 @@ const routes = [
     props: true,
   },
   {
-    path: "/results",
-    name: "results",
-    component: Results,
-  },
-  {
     path: "/follow_list",
     name: "followlist",
     component: FollowList,
+  },
+  {
+    path: "/create_team/:sport",
+    name: "createteam",
+    component: CreateTeam,
+    props: true,
   },
 ];
 

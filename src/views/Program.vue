@@ -6,16 +6,27 @@
       dark
       @change="activeTab = $event"
     >
+      <!-------------------- ALL TABS -------------------->
       <v-tab>Teams</v-tab>
       <v-tab>Matches</v-tab>
       <v-tab>Results</v-tab>
-
+      <!-------------------- TEAM TAB -------------------->
       <v-tab-item>
         <v-card>
           <v-container>
             <v-row style="padding-top: 10px">
               <h1>Teams</h1>
               <v-spacer></v-spacer>
+              <v-btn
+                fab
+                dark
+                small
+                color="primary"
+                router
+                :to="{ name: 'createteam', params: { sport: sport } }"
+              >
+                <v-icon dark flat> mdi-plus</v-icon>
+              </v-btn>
               <v-menu offset-y :close-on-content-click="false">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
@@ -48,13 +59,16 @@
           <Teams :teams="rightTeams"></Teams>
         </v-card>
       </v-tab-item>
-
+      <!-------------------- MATCHES TAB -------------------->
       <v-tab-item>
         <v-card>
           <v-container>
             <v-row style="padding-top: 10px">
               <h1>Matches</h1>
               <v-spacer></v-spacer>
+              <v-btn fab dark small color="primary">
+                <v-icon dark flat> mdi-plus</v-icon>
+              </v-btn>
               <v-menu offset-y :close-on-content-click="false">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
@@ -86,7 +100,7 @@
           <Matches :sport="sport" :data="rightMatches"></Matches>
         </v-card>
       </v-tab-item>
-
+      <!-------------------- RESULTS TAB -------------------->
       <v-tab-item>
         <v-card>
           <v-container>
@@ -156,20 +170,16 @@ export default {
       });
     },
     rightMatches() {
-      let m = this.getMatches[this.sport];
+      let m = this.getMatches(this.sport);
       return m.filter((a) => {
         let state1 = this.getTeamState(this.sport, a.team1);
         let state2 = this.getTeamState(this.sport, a.team2);
-
-        console.log({ sf: this.stateFilter, a });
-
         if (this.stateFilter.length === 0) return true;
         else if (
           this.stateFilter.indexOf(state1) >= 0 ||
           this.stateFilter.indexOf(state2) >= 0
         )
           return true;
-
         return false;
       });
     },
@@ -177,11 +187,7 @@ export default {
       return new Set(this.getData[this.sport].map((a) => a.state));
     },
   },
-  methods: {
-    filterSport(obj) {
-      return obj.sport === this.sport;
-    },
-  },
+  methods: {},
 };
 </script>
 
