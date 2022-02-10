@@ -5,7 +5,7 @@
         <v-col v-for="sport in uniqueSports" :key="sport.index" class="col-4">
           <v-card
             v-if="!followListMode || checkFollowList(sport)"
-            class="mx-auto my-12"
+            class="mx-auto"
             max-width="600"
             router
             :to="{ name: 'program', params: { sport: sport } }"
@@ -15,14 +15,16 @@
               :src="require(`../assets/images/${sport}.jpg`)"
             ></v-img>
 
-            <v-card-title>{{ sport.toUpperCase() }}</v-card-title>
-            <v-card-actions>
+            <v-card-title
+              >{{ sport.toUpperCase() }}
+              <v-spacer />
               <v-btn
                 v-if="!followListMode"
                 fab
                 dark
                 small
                 color="primary"
+                :disabled="checkFollowList(sport)"
                 @click.prevent="addFollow(sport)"
               >
                 <v-icon dark flat> mdi-heart</v-icon>
@@ -36,8 +38,8 @@
                 @click.prevent="removeFollow(sport)"
               >
                 <v-icon dark flat> mdi-close</v-icon>
-              </v-btn></v-card-actions
-            >
+              </v-btn>
+            </v-card-title>
           </v-card>
         </v-col>
       </v-row>
@@ -71,10 +73,6 @@ export default {
     checkFollowList(sport) {
       return this.getFollowList.indexOf(sport) !== -1;
     },
-  },
-  filters: {},
-  mounted() {
-    console.log(this.getFollowList);
   },
 };
 </script>

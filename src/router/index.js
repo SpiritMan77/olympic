@@ -5,6 +5,7 @@ import Program from "@/views/Program";
 import FollowList from "@/views/FollowList";
 import PageNotFound from "@/views/PageNotFound";
 import CreateTeam from "@/views/CreateTeam";
+import CreateMatch from "@/views/CreateMatch";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,12 @@ const routes = [
     path: "/create_team/:sport",
     name: "createteam",
     component: CreateTeam,
+    props: true,
+  },
+  {
+    path: "/create_match/:sport",
+    name: "creatematch",
+    component: CreateMatch,
     props: true,
   },
 ];

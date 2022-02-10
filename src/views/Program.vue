@@ -15,7 +15,7 @@
         <v-card>
           <v-container>
             <v-row style="padding-top: 10px">
-              <h1>Teams</h1>
+              <h2>Teams</h2>
               <v-spacer></v-spacer>
               <v-btn
                 fab
@@ -47,7 +47,7 @@
                   <v-list-item v-for="state in states" :key="state">
                     <v-checkbox
                       v-model="stateFilter"
-                      :label="state"
+                      :label="getStateName(state)"
                       :value="state"
                     ></v-checkbox>
                   </v-list-item>
@@ -64,9 +64,19 @@
         <v-card>
           <v-container>
             <v-row style="padding-top: 10px">
-              <h1>Matches</h1>
+              <h2>Matches</h2>
               <v-spacer></v-spacer>
-              <v-btn fab dark small color="primary">
+              <v-btn
+                fab
+                dark
+                small
+                color="primary"
+                router
+                :to="{
+                  name: 'creatematch',
+                  params: { sport: sport, rightTeams: rightTeams },
+                }"
+              >
                 <v-icon dark flat> mdi-plus</v-icon>
               </v-btn>
               <v-menu offset-y :close-on-content-click="false">
@@ -89,7 +99,7 @@
                   <v-list-item v-for="state in states" :key="state">
                     <v-checkbox
                       v-model="stateFilter"
-                      :label="state"
+                      :label="getStateName(state)"
                       :value="state"
                     ></v-checkbox>
                   </v-list-item>
@@ -105,7 +115,7 @@
         <v-card>
           <v-container>
             <v-row style="padding-top: 10px">
-              <h1>Results</h1>
+              <h2>Results</h2>
               <v-spacer></v-spacer>
               <v-menu offset-y :close-on-content-click="false">
                 <template v-slot:activator="{ on, attrs }">
@@ -127,7 +137,7 @@
                   <v-list-item v-for="state in states" :key="state">
                     <v-checkbox
                       v-model="stateFilter"
-                      :label="state"
+                      :label="getStateName(state)"
                       :value="state"
                     ></v-checkbox>
                   </v-list-item>
@@ -136,7 +146,7 @@
             </v-row>
           </v-container>
 
-          <Matches :sport="sport" :data="rightMatches" :resultsMode="true" />
+          <Matches :sport="sport" :data="rightResults" :resultsMode="true" />
         </v-card>
       </v-tab-item>
     </v-tabs>
@@ -170,24 +180,24 @@ export default {
       });
     },
     rightMatches() {
-      let m = this.getMatches(this.sport);
-      return m.filter((a) => {
-        let state1 = this.getTeamState(this.sport, a.team1);
-        let state2 = this.getTeamState(this.sport, a.team2);
+      return this.getMatches(this.sport).filter((a) => {
         if (this.stateFilter.length === 0) return true;
         else if (
-          this.stateFilter.indexOf(state1) >= 0 ||
-          this.stateFilter.indexOf(state2) >= 0
+          this.stateFilter.indexOf(this.getTeamState(this.sport, a.team1)) >=
+            0 ||
+          this.stateFilter.indexOf(this.getTeamState(this.sport, a.team2)) >= 0
         )
           return true;
         return false;
       });
     },
+    rightResults() {
+      return this.rightMatches.filter((a) => a.date < new Date());
+    },
     states() {
       return new Set(this.getData[this.sport].map((a) => a.state));
     },
   },
-  methods: {},
 };
 </script>
 

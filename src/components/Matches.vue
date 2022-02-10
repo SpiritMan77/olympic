@@ -1,5 +1,11 @@
 <template>
   <v-data-table :headers="tableHeaders" :items="tableItems" hide-default-footer>
+    <template v-slot:item.team="{ item }">
+      <div :class="`famfamfam-flags ${item.team.team1.code.toLowerCase()}`" />
+      <strong>{{ item.team.team1.name }}</strong> VS
+      <strong>{{ item.team.team2.name }}</strong>
+      <div :class="`famfamfam-flags ${item.team.team2.code.toLowerCase()}`" />
+    </template>
   </v-data-table>
 </template>
 
@@ -26,13 +32,8 @@ export default {
           value: "date",
         },
         {
-          text: "State",
-          sortable: true,
-          value: "state",
-        },
-        {
           text: "Team",
-          sortable: true,
+          sortable: false,
           value: "team",
         },
       ];
@@ -56,11 +57,16 @@ export default {
             hour: "numeric",
             minute: "numeric",
           }),
-          state:
-            this.getTeamState(this.sport, data.team1) +
-            " VS " +
-            this.getTeamState(this.sport, data.team2),
-          team: `${data.team1} VS ${data.team2}`,
+          team: {
+            team1: {
+              name: data.team1,
+              code: this.getTeamState(this.sport, data.team1),
+            },
+            team2: {
+              name: data.team2,
+              code: this.getTeamState(this.sport, data.team2),
+            },
+          },
           score: `${data.score1}:${data.score2}`,
         };
       });

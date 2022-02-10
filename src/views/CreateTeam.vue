@@ -1,6 +1,6 @@
 <template>
   <div class="addTeam">
-    <h1>Add Team</h1>
+    <h2>Add Team</h2>
     <v-form ref="form" v-model="valid">
       <v-text-field
         v-model="newTeam.team"
@@ -8,12 +8,26 @@
         label="Team Name"
         required
       ></v-text-field>
-      <v-text-field
+
+      <v-select
+        :items="countries"
         v-model="newTeam.state"
-        :rules="stateRules"
+        :item-value="(item) => item.code"
         label="State"
         required
-      ></v-text-field>
+        :rules="stateRules"
+      >
+        <template v-slot:item="{ item }">
+          <div :class="`famfamfam-flags ${item.code.toLowerCase()}`" />
+          &nbsp;
+          {{ item.name }}
+        </template>
+        <template v-slot:selection="{ item }">
+          <div :class="`famfamfam-flags ${item.code.toLowerCase()}`" />
+          &nbsp;
+          {{ item.name }}
+        </template>
+      </v-select>
 
       <v-btn color="success" class="mr-4" @click="addTeam"> Add Team</v-btn>
     </v-form>
@@ -22,6 +36,8 @@
 
 <script>
 import { mapMutations } from "vuex";
+
+import countriesOfTheWorld from "@/data/countries";
 
 export default {
   name: "CreateTeamDialog",
@@ -37,6 +53,11 @@ export default {
         state: "",
       },
     };
+  },
+  computed: {
+    countries() {
+      return countriesOfTheWorld;
+    },
   },
   methods: {
     ...mapMutations(["ADD_TEAM"]),

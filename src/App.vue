@@ -16,13 +16,20 @@ export default {
   data: () => ({}),
 };
 </script>
+
 <style lang="scss">
-.app {
-}
+@import "~famfamfam-flags/dist/sprite/famfamfam-flags.css";
+
+h2,
 h3,
 h4,
 h5,
 h6 {
-  margin: 1.2rem;
+  margin: 0 1.2rem;
+}
+
+.famfamfam-flags {
+  display: inline-block;
+  margin: 0 0.5rem;
 }
 </style>

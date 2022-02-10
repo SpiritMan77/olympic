@@ -1,6 +1,8 @@
 <template>
-  <div class="follow-list">
-    <h1 v-if="getFollowList.length === 0">You are not following any sports</h1>
+  <div>
+    <h2 v-if="getFollowList.length === 0">
+      You are not following any sports at the moment
+    </h2>
     <Home :followListMode="true" />
   </div>
 </template>

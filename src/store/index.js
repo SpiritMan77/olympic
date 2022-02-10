@@ -14,6 +14,9 @@ export default new Vuex.Store({
     ADD_TEAM: (state, data) => {
       state.data[data.sport].push(data.newTeam);
     },
+    ADD_MATCH: (state, data) => {
+      state.matches[data.sport].push(data.newMatch);
+    },
     ADD_FOLLOW: (state, category) => {
       if (state.followList.indexOf(category) === -1) {
         state.followList.push(category);
@@ -25,11 +28,26 @@ export default new Vuex.Store({
   },
   getters: {
     getData: (state) => state.data,
-    getMatches: (state) => (sport) =>
-      state.matches[sport].map((match) => {
+    getMatches: (state) => (sport) => {
+      let matchesWithGeneratedScore = state.matches[sport].map((match) => {
         match.date = new Date(match.date);
+        let hasScore = !!Object.keys(match).find(
+          (k) => k === "" || k === "score2"
+        );
+        if (!match?.hasScore) {
+          if (!hasScore) {
+            if (match.date < new Date()) {
+              match.score1 = Math.floor(Math.random() * 10);
+              match.score2 = ~~(Math.random() * 10);
+            }
+          }
+          match.hasScore = true;
+        }
         return match;
-      }),
+      });
+      state.matches[sport] = matchesWithGeneratedScore;
+      return matchesWithGeneratedScore;
+    },
     getTeams: (state) => (sport, team) =>
       state.data[sport].filter((t) => {
         return team ? team === t.team : true;

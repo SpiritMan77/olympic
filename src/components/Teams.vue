@@ -1,18 +1,19 @@
 <template>
   <v-data-table :headers="tableHeaders" :items="tableItems" hide-default-footer>
     <template v-slot:item.stateFlag="{ item }">
-      <v-img
-        max-width="50"
-        max-height="50"
-        :src="require(`../assets/images/${item.state}.jpg`)"
-      />
+      <div class="d-flex justify-center">
+        <div :class="`famfamfam-flags ${item.stateFlag.toLowerCase()}`" />
+      </div>
     </template>
   </v-data-table>
 </template>
 
 <script>
+import utils from "@/mixins/utils";
+
 export default {
   name: "Teams",
+  mixins: [utils],
   props: ["teams"],
   computed: {
     tableHeaders() {
@@ -31,6 +32,7 @@ export default {
           text: "State Flag",
           sortable: true,
           value: "stateFlag",
+          align: "center",
         },
       ];
     },
@@ -38,7 +40,7 @@ export default {
       return this.teams.map((team) => {
         return {
           name: team.team,
-          state: team.state,
+          state: this.getStateName(team.state),
           stateFlag: team.state,
         };
       });

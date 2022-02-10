@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="primary" dark>
     <router-link class="routerlink" to="/" color="white" text-color="white">
-      <h1>Olympic</h1>
+      <h1>Olympics</h1>
     </router-link>
     <v-spacer></v-spacer>
     <v-btn
